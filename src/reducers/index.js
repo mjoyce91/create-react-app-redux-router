@@ -1,17 +1,13 @@
-export function firstReducer(state = [], action) {
-  switch (action.type) {
-    case 'SET_FIRST_REDUCER':
-      return action.data;
-    default:
-      return state;
-  }
+import { types, defaults } from '../actions/types';
+
+function makeReducer(type, defaultState) {
+  return function (state = defaultState, action) {
+    return (action.type === type) ? action.data : state;
+  };
 }
 
-export function secondReducer(state = {}, action) {
-  switch (action.type) {
-    case 'SET_SECOND_REDUCER':
-      return action.data;
-    default:
-      return state;
-  }
-}
+/**
+ * Reducers
+ */
+export const firstReducer = makeReducer(types.SET_FIRST_REDUCER, defaults[types.SET_FIRST_REDUCER]);
+export const secondReducer = makeReducer(types.SET_SECOND_REDUCER, defaults[types.SET_SECOND_REDUCER]);

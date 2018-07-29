@@ -5,9 +5,7 @@ import {
   routerMiddleware,
 } from "react-router-redux";
 import createHistory from "history/createBrowserHistory";
-import {
-  firstReducer, secondReducer,
-} from './reducers';
+import * as reducers from './reducers';
 
 // export `history` to use in index.js, we using `createBrowserHistory`
 /* export const history = createHistory({
@@ -17,12 +15,9 @@ export const history = createHistory({});
 
 // Build the middleware for intercepting and dispatching navigation actions
 const middleware = routerMiddleware(history);
-
-const reducer = combineReducers({
-  router: routerReducer,
-  firstReducer,
-  secondReducer,
-});
+const reducer = combineReducers(
+  Object.assign({ router: routerReducer }, reducers)
+);
 
 export default function configureStore() {
   return createStore(

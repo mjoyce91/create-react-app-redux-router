@@ -1,20 +1,27 @@
 import api from '../api';
 import mockData from '../__mocks__/data';
+import { types } from './types';
 
-export function firstAction(data) {
-  return {
-    type: 'SET_FIRST_REDUCER',
-    data,
-  };
+function makeActionCreator(type, ...argNames) {
+  return function (...args) {
+    const action = { type }
+    argNames.forEach((arg, index) => {
+      action[argNames[index]] = args[index]
+    })
+
+    return action
+  }
 }
 
-export function secondAction(data) {
-  return {
-    type: 'SET_SECOND_REDUCER',
-    data,
-  };
-}
+/**
+ * Action Creators
+ */
+export const firstAction = makeActionCreator(types.SET_FIRST_REDUCER, 'data');
+export const secondAction = makeActionCreator(types.SET_SECOND_REDUCER, 'data');
 
+/**
+ * Actions
+ */
 export function getAirports() {
   return (dispatch) => {
   api.get(/* '/data' */'/posts')
