@@ -7,7 +7,7 @@ import {
 import createHistory from "history/createBrowserHistory";
 import {
   firstReducer, secondReducer,
-} from './reducers/firstReducer';
+} from './reducers';
 
 // export `history` to use in index.js, we using `createBrowserHistory`
 /* export const history = createHistory({

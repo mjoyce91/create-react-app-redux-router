@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Details from '../Components/Details';
-import { getDetails } from '../actions/firstAction';
+import { getDetails } from '../actions';
 
 class DetailsContainer extends Component {
   constructor(props) {

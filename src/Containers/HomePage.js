@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getAirports } from '../actions/firstAction';
+import { getAirports } from '../actions';
 import HomePage from '../Components/HomePage';
 
 class HomePageContainer extends Component {
