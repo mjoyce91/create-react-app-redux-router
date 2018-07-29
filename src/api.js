@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const config = {
-  baseURL: window.API_URL || 'https://jsonplaceholder.typicode.com',
+  baseURL: localStorage.getItem('API_URL') || 'http://jsonplaceholder.typicode.com',
 };
 
 const api = axios.create(config);
