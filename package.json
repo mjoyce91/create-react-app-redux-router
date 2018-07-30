@@ -53,7 +53,6 @@
     "collectCoverageFrom": [
       "src/actions/**/*.{js,jsx}",
       "src/components/**/*.{js,jsx}",
-      "src/containers/**/*.{js,jsx}",
       "src/reducers/**/*.{js,jsx}"
     ],
     "coverageReporters": [
