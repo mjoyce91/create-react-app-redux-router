@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'reactstrap';
 
-const Details = ({ data, id }) => (
+const DetailsComponent = ({ data, id }) => (
   <Container style={{ padding: '50px 20px' }}>
     <Row>
       <Col xs="12">
@@ -14,7 +14,7 @@ const Details = ({ data, id }) => (
           {id}
         </h2>
         <p>
-          Summary: Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+          Summary: Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
         </p>
       </Col>
     </Row>

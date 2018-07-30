@@ -9,6 +9,9 @@ module.exports = {
     'airbnb',
     'prettier',
   ],
+  "globals": {
+    "localStorage": true
+  },
   'plugins': [
     'prettier',
   ],
