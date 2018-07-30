@@ -1,27 +1,37 @@
-import { setupAsyncMocks } from '../test';
+import * as glob from 'glob';
+import * as path from 'path';
+import { setupAsyncMocks } from '../tests';
 
-const { mockAdapter } = setupAsyncMocks();
+const { mockStore, mockAdapter } = setupAsyncMocks();
 
-describe('actions', () => {
-  beforeEach(() => {
-    mockAdapter.reset();
-  });
+const options = { cwd: __dirname, ignore: './*.test.js' };
+const files = glob.sync('./*.js', options);
 
-  it('can fetch a client', (done) => {
-    // mockAdapter.onGet('/client/1/').reply(200,
-    //   clientObject,
-    // );
-    //
-    // const f = () => {
-    //   setTimeout(() => {
-    //     const clientPromise = fetchClient(1);
-    //     Promise.resolve(clientPromise)
-    //       .then((client) => {
-    //         expect(client.id).toBeDefined();
-    //         done();
-    //       });
-    //   }, 0);
-    // };
-    // f();
-  });
+describe('Actions', () => {
+  let i;
+
+  for(i = 0; i < files.length; i++){
+    const file = files[i];
+    const actions = require(file);
+    let action;
+    let key;
+
+    for(key in actions) {
+      action = actions[key];
+      if(typeof(action) === 'function') {
+        it(`action ${key} can be dispatched`, (done) => {
+          const store = mockStore({ data: [] });
+          const f = () => {
+            setTimeout(() => {
+              store.dispatch(action());
+              store.dispatch(action());
+              done();
+            }, 0);
+          };
+
+          f();
+        });
+      }
+    }
+  }
 });

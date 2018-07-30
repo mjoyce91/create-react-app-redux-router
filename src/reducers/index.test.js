@@ -1,17 +1,25 @@
-import reducer, { initialState } from './index';
-import { RECEIVE_BID_CYCLES } from '../../actions';
+import * as glob from 'glob';
+import * as path from 'path';
 
-describe('reducers', () => {
-  // it('should return the initial state', () => {
-  //   expect(reducer(undefined, {})).toEqual(initialState);
-  // });
-  //
-  // it('should handle RECEIVE_BID_CYCLES', () => {
-  //   const action = {
-  //     type: RECEIVE_BID_CYCLES,
-  //     data: mock,
-  //   };
-  //
-  //   expect(reducer(false, action)).toBe(mock);
-  // });
+const options = { cwd: __dirname, ignore: './*.test.js' };
+const files = glob.sync('./*.js', options);
+
+describe('Reducers', () => {
+  let i;
+
+  for(i = 0; i < files.length; i++){
+    const file = files[i];
+    const reducers = require(file);
+    let reducer;
+    let key;
+
+    for(key in reducers) {
+      reducer = reducers[key];
+      if(typeof(reducer) === 'function') {
+        it(`reducer => ${key}() should return an initial state`, () => {
+          expect(reducer(null, {})).toBeDefined();
+        });
+      }
+    }
+  }
 });

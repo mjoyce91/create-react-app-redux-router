@@ -2,6 +2,17 @@ import api from '../api';
 import mockData from '../__mocks__/data';
 import { types } from './types';
 
+/**
+ * Generates a function in the form of :
+ * -------------------------------------
+ *   function ('ACTION_TYPE', ...args) {
+ *     return {
+ *       type: 'SET_FIRST_REDUCER',
+ *       ...args,
+ *     };
+ *   }
+ * -------------------------------------
+ */
 function makeActionCreator(type, ...argNames) {
   return function (...args) {
     const action = { type }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-class HomePageContainer extends Component {
+class HeaderComponent extends Component {
   componentWillMount() {
   }
 
@@ -18,4 +18,4 @@ class HomePageContainer extends Component {
   }
 };
 
-export default HomePageContainer;
+export default HeaderComponent;

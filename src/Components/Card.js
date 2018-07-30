@@ -35,7 +35,14 @@ class CardComponent extends Component {
 };
 
 CardComponent.propTypes = {
-  data: PropTypes.shape({}).isRequired
-}
+  data: PropTypes.oneOfType([
+    PropTypes.shape({}),
+    PropTypes.number,
+  ]),
+};
+
+CardComponent.defaultProps = {
+  data: {},
+};
 
 export default CardComponent;

@@ -8,8 +8,8 @@ const HomePageContainer = () => (
     <Row>
       <Col xs="12">
         {
-          [1,2,3].map((m) => (
-            <Col lg="4" md="6" sm="12" style={{ float: 'left' }}>
+          [1,2,3].map((m, key) => (
+            <Col key={key} lg="4" md="6" sm="12" style={{ float: 'left' }}>
               <Card data={m} />
             </Col>
           ))
@@ -21,6 +21,10 @@ const HomePageContainer = () => (
 
 HomePageContainer.propTypes = {
   onFilterChange: PropTypes.func.isRequired,
-}
+};
+
+HomePageContainer.defaultProps = {
+  onFilterChange: () => {},
+};
 
 export default HomePageContainer;

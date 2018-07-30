@@ -1,7 +1,21 @@
 import { types, defaults } from '../actions/types';
 
+/**
+ * Generates a function in the form of:
+ * -------------------------------------
+ *   function reducer(state, action) {
+ *     state = state || <defaultState>;
+ *     switch (action.type) {
+ *       case <type>:
+ *         return action.data;
+ *       default:
+ *         return state;
+ *   }
+ * -------------------------------------
+ */
 function makeReducer(type, defaultState) {
-  return function (state = defaultState, action) {
+  return function (state, action) {
+    state = state || defaultState;
     return (action.type === type) ? action.data : state;
   };
 }
