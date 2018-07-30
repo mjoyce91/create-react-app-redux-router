@@ -1,5 +1,4 @@
 import api from '../api';
-import mockData from '../__mocks__/data';
 import { types } from './types';
 
 /**
@@ -35,26 +34,33 @@ export const secondAction = makeActionCreator(types.SET_SECOND_REDUCER, 'data');
  */
 export function getAirports() {
   return (dispatch) => {
-  api.get(/* '/data' */'/posts')
-    .then(() => {
-      dispatch(firstAction(mockData.airports));
-    })
-    .catch(() => {
-      dispatch(firstAction(mockData.airports));
-    });
+    api
+      .get('/posts')
+      .then((response) => {
+        const data = response.data || [];
+        dispatch(firstAction(data));
+      })
+      .catch(() => {
+        dispatch(firstAction([]));
+      });
   }
 }
 
 export function getDetails(id) {
   return (dispatch) => {
-  api.get(/* `/data/${id}` */'/posts')
-    .then(() => {
-      const airport = mockData.airports.airport.find(f => f.shortcode === id) || { t: 1 };
-      dispatch(secondAction(airport));
-    })
-    .catch(() => {
-      const airport = mockData.airports.airport.find(f => f.shortcode === id) || { t: 1 };
-      dispatch(secondAction(airport));
-    });
+    api
+      .get(`/posts/${id}`)
+      .then((response) => {
+        let data = response.data;
+
+        if(typeof(data) === 'array') {
+           data = data.slice(0, 1)
+        }
+
+        dispatch(secondAction(data));
+      })
+      .catch(() => {
+        dispatch(secondAction({}));
+      });
   }
 }
