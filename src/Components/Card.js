@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button } from 'reactstrap';
+  CardTitle, CardSubtitle } from 'reactstrap';
+import { Link } from 'react-router-dom'; 
 import PropTypes from 'prop-types';
 import '../App.css';
 
@@ -24,9 +25,9 @@ class CardComponent extends Component {
             <CardText>
               Some quick example text to build on the card title and make up the bulk of the cards content.
             </CardText>
-            <Button>
+            <Link className="btn btn-primary" to={`/details/${data.id}`}>
               Button
-            </Button>
+            </Link>
           </CardBody>
         </Card>
       </div>

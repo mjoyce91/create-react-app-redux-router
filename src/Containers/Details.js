@@ -19,9 +19,10 @@ class DetailsContainer extends Component {
   }
 
   render() {
+    const { id } = this.state;
     const { data } = this.props;
     return (
-      <Details data={data} />
+      <Details data={data} id={id} />
     )
   }
 };
