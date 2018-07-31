@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'reactstrap';
 import Select from 'react-select';
 import Card from './Card';
 
-const HomePageContainer = ({ data, options }) => (
+const HomePageComponent = ({ data, options }) => (
   <Container style={{ padding: '50px 20px' }}>
     <h1>
       Home Page
@@ -28,13 +28,13 @@ const HomePageContainer = ({ data, options }) => (
   </Container>
 );
 
-HomePageContainer.propTypes = {
+HomePageComponent.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   onFilterChange: PropTypes.func.isRequired,
   options: PropTypes.arrayOf(PropTypes.shape({})),
 }
 
-HomePageContainer.defaultProps = {
+HomePageComponent.defaultProps = {
   data: [{ id: 1 },{ id: 2 },{ id: 3 }],
   onFilterChange: () => {},
   options: [
@@ -44,4 +44,4 @@ HomePageContainer.defaultProps = {
   ]
 }
 
-export default HomePageContainer;
+export default HomePageComponent;
