@@ -18,14 +18,12 @@ class HomePageContainer extends Component {
   }
 };
 
-/* eslint-disable react/no-typos */
 HomePageContainer.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   getData: PropTypes.func.isRequired,
 };
-/* eslint-enable react/no-typos */
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   data: state.firstReducer,
 });
 

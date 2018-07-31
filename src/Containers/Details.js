@@ -6,9 +6,10 @@ import { getDetails } from '../actions';
 
 class DetailsContainer extends Component {
   constructor(props) {
+    const item = props.match || { params: {} };
     super(props);
     this.state = {
-      id: props.match.params.id,
+      id: item.params.id,
     }
   }
 
@@ -36,9 +37,10 @@ DetailsContainer.propTypes = {
 
 DetailsContainer.defaultProps = {
   data: {},
+  getData: () => {},
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   data: state.secondReducer,
 });
 

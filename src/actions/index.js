@@ -53,7 +53,7 @@ export function getDetails(id) {
       .then((response) => {
         let data = response.data;
 
-        if(typeof(data) === 'array') {
+        if(Array.isArray(data)) {
            data = data.slice(0, 1)
         }
 

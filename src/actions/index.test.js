@@ -7,29 +7,49 @@ const { mockStore, mockAdapter } = setupAsyncMocks();
 const options = { cwd: __dirname, ignore: './*.test.js' };
 const files = glob.sync('./*.js', options);
 
+function assertAction(done, action = () => {}, network = false) {
+  const store = mockStore({ data: [] });
+  const f = () => {
+    setTimeout(() => {
+      store.dispatch(action());
+      store.dispatch(action());
+      done();
+    }, 0);
+  };
+
+  mockAdapter.reset();
+
+  /**
+   * Allows network passthrough
+   */
+  if(network) {
+    mockAdapter
+      .onAny()
+      .reply(config => new Promise((resolve, reject) => resolve([200, []])))
+      .onAny()
+      .passThrough();
+  }
+
+  f();
+}
+
 describe('Actions', () => {
   let i;
 
   for(i = 0; i < files.length; i++){
     const file = files[i];
     const actions = require(file);
-    let action;
-    let key;
 
-    for(key in actions) {
-      action = actions[key];
+    for(const key in actions) {
+      const action = actions[key];
+
       if(typeof(action) === 'function') {
-        it(`action ${key} can be dispatched`, (done) => {
-          const store = mockStore({ data: [] });
-          const f = () => {
-            setTimeout(() => {
-              store.dispatch(action());
-              store.dispatch(action());
-              done();
-            }, 0);
-          };
+        it(`action ${key} can be dispatched for on errors`, (done) => {
+          assertAction(done, action, false);
+        });
 
-          f();
+        it(`action ${key} can be dispatched for on success`, (done) => {
+          assertAction(done, action, true);
         });
       }
     }
