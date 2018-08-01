@@ -1,8 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'reactstrap';
 
-const Details = ({ data, id }) => (
+const DetailsComponent = ({ data, id }) => (
   <Container style={{ padding: '50px 20px' }}>
+    {console.log(data)}
     <Row>
       <Col xs="12">
         <h1>
@@ -14,11 +16,21 @@ const Details = ({ data, id }) => (
           {id}
         </h2>
         <p>
-          Summary: Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum 
+          Summary: Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
         </p>
       </Col>
     </Row>
   </Container>
 );
 
-export default Details;
+DetailsComponent.propTypes = {
+  data: PropTypes.shape({}),
+  id: PropTypes.node,
+}
+
+DetailsComponent.defaultProps = {
+  data: {},
+  id: 1,
+}
+
+export default DetailsComponent;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getAirports } from '../actions/firstAction';
+import { getAirports } from '../actions';
 import HomePage from '../Components/HomePage';
 
 class HomePageContainer extends Component {
@@ -11,21 +11,20 @@ class HomePageContainer extends Component {
   }
 
   render() {
-    /* const { data } = this.props; */
+    const { data } = this.props;
+    console.log(data);
     return (
       <HomePage />
     )
   }
 };
 
-/* eslint-disable react/no-typos */
 HomePageContainer.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   getData: PropTypes.func.isRequired,
 };
-/* eslint-enable react/no-typos */
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   data: state.firstReducer,
 });
 

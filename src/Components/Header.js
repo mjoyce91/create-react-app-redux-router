@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import '../App.css';
 
-class HomePageContainer extends Component {
+class HeaderComponent extends Component {
   componentWillMount() {
   }
 
@@ -21,4 +21,4 @@ class HomePageContainer extends Component {
   }
 };
 
-export default HomePageContainer;
+export default HeaderComponent;

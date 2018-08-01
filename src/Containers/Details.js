@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { get } from 'lodash';
 import Details from '../Components/Details';
-import { getDetails } from '../actions/firstAction';
+import { getDetails } from '../actions';
 
 class DetailsContainer extends Component {
   constructor(props) {
+    const item = props.match || { params: {} };
     super(props);
     this.state = {
-      id: props.match.params.id,
+      id: get(item, 'params.id', null),
     }
   }
 
@@ -29,16 +31,19 @@ class DetailsContainer extends Component {
 
 /* eslint-disable react/no-typos */
 DetailsContainer.propTypes = {
-  data: PropTypes.shape({}).isRequired,
-  getData: PropTypes.func.isRequired,
+  data: PropTypes.shape({}),
+  getData: PropTypes.func,
+  match: PropTypes.shape({}),
 };
 /* eslint-enable react/no-typos */
 
 DetailsContainer.defaultProps = {
   data: {},
+  getData: () => {},
+  match: {},
 };
 
-const mapStateToProps = state => ({
+export const mapStateToProps = state => ({
   data: state.secondReducer,
 });
 
