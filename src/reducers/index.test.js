@@ -1,18 +1,15 @@
 import * as glob from 'glob';
-import * as path from 'path';
 
 const options = { cwd: __dirname, ignore: './*.test.js' };
 const files = glob.sync('./*.js', options);
 
 describe('Reducers', () => {
-  let i;
-
-  for(i = 0; i < files.length; i++){
-    const file = files[i];
+  files.forEach(file => {
     const reducers = require(file);
     let reducer;
     let key;
 
+    /* eslint-disable no-restricted-syntax */
     for(key in reducers) {
       reducer = reducers[key];
       if(typeof(reducer) === 'function') {
@@ -21,5 +18,6 @@ describe('Reducers', () => {
         });
       }
     }
-  }
+    /* eslint-enable no-restricted-syntax */
+  })
 });

@@ -1,5 +1,4 @@
 import * as glob from 'glob';
-import * as path from 'path';
 import { setupAsyncMocks } from '../tests';
 
 const { mockStore, mockAdapter } = setupAsyncMocks();
@@ -25,7 +24,7 @@ function assertAction(done, action = () => {}, network = false) {
   if(network) {
     mockAdapter
       .onAny()
-      .reply(config => new Promise((resolve, reject) => resolve([200, []])))
+      .reply((/* config */) => new Promise((resolve, /* reject */) => resolve([200, []])))
       .onAny()
       .passThrough();
   }
@@ -34,12 +33,10 @@ function assertAction(done, action = () => {}, network = false) {
 }
 
 describe('Actions', () => {
-  let i;
-
-  for(i = 0; i < files.length; i++){
-    const file = files[i];
+  files.forEach(file => {
     const actions = require(file);
 
+    /* eslint-disable no-restricted-syntax */
     for(const key in actions) {
       const action = actions[key];
 
@@ -53,5 +50,6 @@ describe('Actions', () => {
         });
       }
     }
-  }
+    /* eslint-enable no-restricted-syntax */
+  })
 });

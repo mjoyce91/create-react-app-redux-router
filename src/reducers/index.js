@@ -15,8 +15,8 @@ import { types, defaults } from '../actions/types';
  */
 function makeReducer(type, defaultState) {
   return function (state, action) {
-    state = state || defaultState;
-    return (action.type === type) ? action.data : state;
+    const newState = state || defaultState;
+    return (action.type === type) ? action.data : newState;
   };
 }
 

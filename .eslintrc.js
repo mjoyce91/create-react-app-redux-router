@@ -28,5 +28,10 @@ module.exports = {
   },
   'rules': {
     "react/jsx-filename-extension": 0,
+    "func-names": 0,
+    "guard-for-in": 0,
+    "import/no-dynamic-require": 0,
+    "global-require": 0,
+    "no-loop-func": 0,
   }
 }

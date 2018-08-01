@@ -37,7 +37,7 @@ export function getAirports() {
     api
       .get('/posts')
       .then((response) => {
-        const data = response.data || [];
+        const { data } = response;
         dispatch(firstAction(data));
       })
       .catch(() => {
@@ -51,7 +51,7 @@ export function getDetails(id) {
     api
       .get(`/posts/${id}`)
       .then((response) => {
-        let data = response.data;
+        let { data } = response;
 
         if(Array.isArray(data)) {
            data = data.slice(0, 1)
